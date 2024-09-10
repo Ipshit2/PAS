@@ -75,7 +75,7 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard"  
+              <NavLink to="/pet"  
               className={({isActive}) =>` ${isActive ? "text-yellow-600" : "text-black "} font-Lato  text-[20px] `}>
                 Find a pet
               </NavLink>
@@ -92,6 +92,17 @@ function Header() {
               Shelter
               </NavLink>
             </li>  
+            {logged
+            ?
+            (<li>
+              <NavLink to="/dashboard"  
+              className={({isActive}) =>` ${isActive ? "text-yellow-600" : "text-black "} font-Lato  text-[20px] `}>
+              Dashboard
+              </NavLink>
+            </li> 
+            ):
+            (<>
+            </>)}
         </ul>
         <ul>
             {logged
@@ -99,13 +110,13 @@ function Header() {
               (<li> 
                 <button
                   onClick={handleLogout}
-                  className="text-[20px] text-white bg-black px-9 py-2 rounded-2xl border-black hover:text-black border-2 hover:bg-white">
+                  className="text-[20px] text-white bg-black px-6 py-1 rounded-2xl border-black hover:text-black border-2 hover:bg-white">
                   Logout
                 </button>
               </li>)
             : 
               (<li>
-                <button className="text-[20px] text-white bg-black px-9 py-2 rounded-2xl border-black hover:text-black border-2 hover:bg-white">
+                <button className="text-[20px] text-white bg-black px-6 py-1 rounded-2xl border-black hover:text-black border-2 hover:bg-white">
                   <NavLink to="/login"  > 
                   Login 
                   </NavLink>
