@@ -182,16 +182,16 @@ function LandingPage() {
                   14 -430 17 -209 4 -389 8 -400 10 -11 1 -43 -1 -72 -5z"/>
                   </g>
                 </svg>
-              <button className='absolute top-[650px] left-[360px] font-Mont bg-[#FDD835] hover:border-2 border-black text-black px-4 py-2 rounded-2xl'>
-                <NavLink to="/signup" >
+              <NavLink to="/signup" ><button className='absolute top-[650px] left-[360px] font-Mont bg-[#FDD835] hover:border-2 border-black text-black px-4 py-2 rounded-2xl'>
+                
                   Get Started
-                </NavLink>
-              </button>
-              <button className='absolute top-[650px] left-[500px] font-Mont bg-black text-white px-4 py-2 rounded-2xl hover:border-2 border-black hover:text-black hover:bg-white'>
-                <NavLink to="/about" >
+                
+              </button></NavLink>
+              <NavLink to="/about" ><button className='absolute top-[650px] left-[500px] font-Mont bg-black text-white px-4 py-2 rounded-2xl hover:border-2 border-black hover:text-black hover:bg-white'>
+                
                   Learn More
-                </NavLink>
-              </button>
+                
+              </button></NavLink>
             </div>
           </div>
           <div>      

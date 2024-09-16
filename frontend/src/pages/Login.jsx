@@ -2,7 +2,7 @@ import React,  { useState } from 'react'
 import pug from "D:/PAS/frontend/public/blackpug.png"
 import { NavLink , useNavigate } from 'react-router-dom'
 import axios from "axios"
-import Cookies from 'js-cookie'
+
 
 function Login() {
   const [email,setEmail] = useState('')

@@ -161,12 +161,12 @@ function Header() {
                 </button>
               </li>)
             : 
-              (<li>
+              (<li><NavLink to="/login"  > 
                 <button className="text-[20px] text-white bg-black px-6 py-1 rounded-2xl border-black hover:text-black border-2 hover:bg-white">
-                  <NavLink to="/login"  > 
+                  
                   Login 
-                  </NavLink>
-                </button>
+                  
+                </button></NavLink>
               </li>)
             }
         </ul>
