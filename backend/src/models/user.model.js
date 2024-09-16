@@ -18,6 +18,24 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
+        address: {
+            type: String,
+        },
+        city: {
+            type: String,
+
+        },
+        state: {
+            type: String,
+            
+        },
+        phone:{
+            type: Number,
+        },
+        pincode:{
+            type: Number,
+        },
+
         cart: [
             {
                 type: Schema.Types.ObjectId,

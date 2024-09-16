@@ -19,13 +19,19 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:8080/user/login', user, {withCredentials: true,})
       console.log(res.data.token)
-      if(res.data.token){
-        Cookies.set('token',res, { expires: 1, path: '/', secure: true, sameSite: 'Strict' })
+      // if(res.data.token){
+      //   Cookies.set('token',res, { expires: 1, path: '/', secure: true, sameSite: 'Strict' })
         
-        alert('Successfully User Logged in');
+      //   alert('Successfully User Logged in');
+      //   navigate('/');
+      // } else {
+      //   alert('Login failed: No token received');
+      // }
+      if (res.status === 200) {
+        alert('Successfully logged in');
         navigate('/');
       } else {
-        alert('Login failed: No token received');
+        alert('Login failed: ' + res.data.message);
       }
     }catch (error) {
       alert('An error happened. Please check console');
@@ -75,8 +81,8 @@ function Login() {
             onClick={handleUser}>
             Login
           </button>
-          <p >
-            Dont have an account? 
+          <p>
+            Dont have an account?
             <NavLink to={"/signup"} className={"font-bold"}>
               Sign Up
             </NavLink>

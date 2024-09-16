@@ -1,7 +1,7 @@
 import React , {useState ,  useEffect } from 'react'
 import  {NavLink , useNavigate} from "react-router-dom"
 import Cookies from 'js-cookie'
-
+import axios from "axios";
 function Header() {
   
   const navigate = useNavigate()
@@ -9,25 +9,71 @@ function Header() {
 
 
   console.log("logged: ", logged)
-  
-  
-  const token = Cookies.get('token')
-
   useEffect(() => {
-    const checklogin = () => {
-      
-      if(token){
-        setLogged(true)
+    const checkLogin = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/user/dashboard', {
+          withCredentials: true,
+        });
+
+        if (response.data.authenticated) {
+          setLogged(true);
+        } else {
+          setLogged(false);
+        }
+      } catch (error) {
+        setLogged(false); 
       }
-      console.log("token: ",token);
-    };
-    checklogin(); 
-  }, [token]);
-  
-  const handleLogout = () => {
-    Cookies.remove('token')
-    setLogged(false)
+    }
+    checkLogin();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:8080/user/logout',
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        setLogged(false);
+        alert('Successfully logged out');
+        navigate('/'); // Navigate to login page after logout
+      } else {
+        alert('Logout failed');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('An error occurred while logging out');
+    }
   };
+
+
+
+
+  
+  // const token = Cookies.get('token')
+
+  // useEffect(() => {
+    
+      
+  //   const checklogin = () => {
+      
+  //     if(token){
+  //       setLogged(true)
+  //     }
+  //     console.log("token: ",token);
+  //   };
+  //   checklogin(); 
+  // }, [token]);
+  
+  // const handleLogout = () => {
+  //   Cookies.remove('token')
+  //   setLogged(false)
+  // };
   return (
     <div>
         <div className='flex w-full bg-[#f2f2f2]  z-20 px-14 py-7 text-2xl justify-between fixed'>
