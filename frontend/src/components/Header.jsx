@@ -51,9 +51,6 @@ function Header() {
     }
   };
 
-
-
-
   
   // const token = Cookies.get('token')
 
@@ -121,7 +118,7 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/pet"  
+              <NavLink to="/allpets"  
               className={({isActive}) =>` ${isActive ? "text-yellow-600" : "text-black "} font-Lato  text-[20px] `}>
                 Find a pet
               </NavLink>

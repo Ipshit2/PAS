@@ -41,8 +41,13 @@ const userSchema = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: "Product"
             }
-        ]
-        
+        ],
+        shop:{
+            type:Boolean,
+        },
+        shelter:{
+            type:Boolean,
+        }
     },
     {
         timestamps: true

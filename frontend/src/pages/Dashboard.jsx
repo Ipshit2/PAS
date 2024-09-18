@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { NavLink } from 'react-router-dom'
+import OwnerpetCard from '../components/OwnerpetCard'
 function Dashboard() {
 
     const [user, setUser] = useState({
@@ -78,6 +79,26 @@ function Dashboard() {
     const capitalizedUsername = user.username
         ? user.username[0].toUpperCase() + user.username.slice(1)
         : ''
+
+    const [pets, setPets] = useState([])
+
+    useEffect(()=>{
+        const fetchpets = async ()=>{
+            try {
+                const response =await axios.get("http://localhost:8080/pet/getmypet", {
+                    withCredentials: true,
+                })
+                setPets(response.data.data)
+                console.log(response.data.data)
+                
+            } catch (error) {
+                alert("error happened")
+                
+            }
+        }
+        fetchpets()
+
+    },[])
 
     return (
         <>
@@ -218,12 +239,39 @@ function Dashboard() {
                                 className='mb-3 pt-2 h-[40px] pl-2 rounded-md font-Mont bg-gray-300  w-[400px]'>
                                     {user.pincode}</h1>}
                                     
-                                <button onClick={edit ? HandleSubmit : HandleEdit} className= ' mx-20 h-[40px] w-[100px] text-[20px] text-white bg-black px-6 py-1 rounded-md border-black ' >
+                                <button onClick={edit ? HandleSubmit : HandleEdit} className= ' mx-20 h-[40px] w-[130px] text-[20px] text-white bg-black px-6 py-1 rounded-md border-black ' >
                                     {edit ? 'Save' : 'Edit'}
                                 </button>
+
                             </div>
+                            <div className='flex'>
+                                <h1 className='mb-3 pt-2 h-[40px] font-bold pl-2 rounded-md font-Mont  w-[150px]'>
+                                Enter your Role:
+                                </h1>
+                                <div>
+
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>  
+                    <div className='flex py-9 border-b-2 border-gray-300'>
+                        <div className='w-1/5'>
+                            <h1 className='font-Mont text-[30px] font-semibold'>Your Pets:</h1>
+                            <NavLink to="/petregister" ><button className='font-Mont text-[20px] w-[150px]'> Add</button></NavLink>
+                            
+                        </div>
+                        <div className='grid grid-cols-3 gap-10'>
+                                {pets.length>0 ?
+                                (pets.map((pet) =>( <OwnerpetCard key={pet._id} pet={pet} />)))
+                                :
+                                (<h1 className='font-Mont text-[20px] pt-2'>No pet for sale</h1>)}
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    
                     
 
                 </div>
