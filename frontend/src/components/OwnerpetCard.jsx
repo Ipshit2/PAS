@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from "axios"
+import toast from 'react-hot-toast'
 function OwnerpetCard(pet) {
 
   const HandleDelete = async () => {
@@ -7,10 +8,14 @@ function OwnerpetCard(pet) {
       await axios.delete(`http://localhost:8080/pet/${pet.pet._id}`, {
         withCredentials: true,
       })
-      alert("pet Removed")
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000)
+      toast.success("pet Removed")
+      
     } catch (error) {
       console.error('Error deleting pet:', error);
-      alert('Error deleting pet');
+      toast.error('Error deleting pet');
     }
   }
 

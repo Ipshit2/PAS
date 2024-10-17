@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react'
+import toast from 'react-hot-toast';
 function Petregister() {
 
   const [pet, setPet] = useState({
@@ -24,12 +25,12 @@ function Petregister() {
       })
 
       if (response.status === 201) {
-        alert('Pet registered successfully!');
+        toast.success('Pet registered successfully!');
         setPet({ name: '', category: '', sex: '', age: '', description: '', price: '' })
       }
     } catch (error) {
       
-      alert('Failed to register the pet. Please try again.')
+      toast.error('Failed to register the pet. Please try again.')
       console.log(error)
     }
   }

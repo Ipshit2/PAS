@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import cat from "D:/PAS/frontend/public/pngegg (5).png"
 import { NavLink , useNavigate} from 'react-router-dom'
 import axios from "axios"
+import toast from 'react-hot-toast'
 
 function Signup() {  
   const [username,setUsername] = useState('')
@@ -18,11 +19,11 @@ function Signup() {
     }
     axios.post('http://localhost:8080/user/register', user)
     .then(() =>{
-      alert("Successfully User Registered")
+      toast.success("Successfully User Registered")
       navigate("/login")
     })
     .catch((error)=>{
-      alert('An error happened. Please check console');
+      toast.error('An error happened. Put proper information');
       setEmail('');
       setPassword('');
       console.log(error);

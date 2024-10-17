@@ -2,6 +2,7 @@ import React,  { useState } from 'react'
 import pug from "D:/PAS/frontend/public/blackpug.png"
 import { NavLink , useNavigate } from 'react-router-dom'
 import axios from "axios"
+import toast from 'react-hot-toast'
 
 
 function Login() {
@@ -28,13 +29,16 @@ function Login() {
       //   alert('Login failed: No token received');
       // }
       if (res.status === 200) {
-        alert('Successfully logged in');
+        toast.success('Successfully logged in');
         navigate('/');
+        setTimeout(() => {
+          window.location.reload();
+        }, 500)
       } else {
-        alert('Login failed: ' + res.data.message);
+        toast.error('Login failed: ' + res.data.message);
       }
     }catch (error) {
-      alert('An error happened. Please check console');
+      toast.error('An error happened. Please check console');
       console.log(error);
     }
 

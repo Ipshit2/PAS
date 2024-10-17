@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import PetCard from '../components/PetCard.jsx'
+import toast from 'react-hot-toast'
 
 
 function AllPets() {
@@ -15,7 +16,7 @@ function AllPets() {
                 console.log(response.data.data)
                 
             } catch (error) {
-                alert("error happened")
+                toast.error("error happened")
                 
             }
         }

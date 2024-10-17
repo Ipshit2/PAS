@@ -2,6 +2,7 @@ import React , {useState ,  useEffect } from 'react'
 import  {NavLink , useNavigate} from "react-router-dom"
 import Cookies from 'js-cookie'
 import axios from "axios";
+import toast from 'react-hot-toast';
 function Header() {
   
   const navigate = useNavigate()
@@ -40,14 +41,14 @@ function Header() {
 
       if (response.status === 200) {
         setLogged(false);
-        alert('Successfully logged out');
+        toast.success('Successfully logged out');
         navigate('/'); // Navigate to login page after logout
       } else {
-        alert('Logout failed');
+        toast.error('Logout failed');
       }
     } catch (error) {
       console.log(error);
-      alert('An error occurred while logging out');
+      toast.error('An error occurred while logging out');
     }
   };
 

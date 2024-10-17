@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { NavLink } from 'react-router-dom'
 import OwnerpetCard from '../components/OwnerpetCard'
+import toast from 'react-hot-toast'
 function Dashboard() {
 
     const [user, setUser] = useState({
@@ -68,10 +69,10 @@ function Dashboard() {
                 withCredentials: true,
             })
             setUser(response.data.data)
-            alert("Successfully data entered")
+            toast.success("Successfully data entered")
             setEdit(false)
         } catch (error) {
-            alert("Error Happened")
+            toast.error("Error Happened")
             console.error('Error saving user data:', error)
         }
     }
@@ -92,7 +93,7 @@ function Dashboard() {
                 console.log(response.data.data)
                 
             } catch (error) {
-                alert("error happened")
+                toast.error("error happened")
                 
             }
         }
